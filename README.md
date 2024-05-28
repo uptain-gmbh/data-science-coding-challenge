@@ -40,6 +40,10 @@ It is up to you to select your stack. Feel free to choose the one that enables y
 *   Please provide a description of your solution and the decisions you made in the `README.md` file. 
     This must include the method of finding the attributes in the emails and the model training process you used to predict the age.
 
+# GitHub
+* [How to fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+* [How to create a pull request from fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+
 # Disclaimer
 
 This repository contains a list of generated test emails. Any real match with existing emails is purely coincidental and unintentional. All the emails here were generated for testing purposes only.
