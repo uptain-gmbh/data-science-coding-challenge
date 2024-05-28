@@ -21,11 +21,14 @@ It is up to you to select your stack. Feel free to choose the one that enables y
 
 ## Requirements
 
-*   The output of the model must produce a JSON value like:
-    *   ```{ "age": "young", "score": 1 }``` 
-    *   ```{ "age": "medium", "score": 0.5 }``` 
-    *   ```{ "age": "old", "score": 0.75 }``` 
-    *   ```{ "age": "unsure" }``` 
+*   The output of the model must produce a single JSON line like:
+    * ```{ "age": "{age_class}", "score": {score_value} }``` 
+
+    For example:
+    1.   ```{ "age": "young", "score": 1 }``` 
+    2.   ```{ "age": "medium", "score": 0.5 }``` 
+    3.   ```{ "age": "old", "score": 0.75 }``` 
+    4.   ```{ "age": "unsure", "score": 0 }``` 
 
     Where `age` can be one of four options:
 
