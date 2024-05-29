@@ -58,3 +58,23 @@ This repository contains a list of generated test emails. Any real match with ex
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+## Solution and methodology
+
+The approach taken was to build a classifier using either shallow methods or deep learning methods.
+First, Invalid email adresses were filtered out using RegEx. Then, the potential dates in the email adresses were extracted also using RegEx. Then, based on certain criteria the labels were created.
+The email adresses are then stripped off the Domain name and converted to lowercase for consistency. Afterwards, the addresses were converted into a character-wise numeric representations(tokens) and padded to uniform length of 32 and then split into training and testing sets. 
+
+Random forests, a fully connected neural network and convolutional neural networks were trained and had their performance tested. The random forest outperformed both neural networks, which is probably due to the small training data. 
+
+To run the model from the terminal, simply navigate to the ```data-science-coding-challenge-main``` folder then run ```python inference.py```. you will then be prompted to enter an email address. and here the full email address must be entered. the purification and tokenization process is taken care of internally.
+
+
+## Extra info
+
+```Playground.py``` contains the exploration and the pre-processing of the dataset as well as training the classifier. All steps are underneath their respective markdown.
+
+```training_data.csv```, ```validation_data.csv``` and ```test_data.csv``` contain the split dataframes used to train the pytorch models. However, due to the poor performance the models were not used in the final inference. Yet, the model is still present in ```playground.py``` alongside the train and validation loops.
+
+Some intermediate text files and CSVs are kept in the project to showcase the progress made.
