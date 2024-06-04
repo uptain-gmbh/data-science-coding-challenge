@@ -1,60 +1,46 @@
 # Uptain Data Science Coding Challenge
+ I have considered this task as a classification problem, because we're basically assigning
+the email addresses to its right class [young, medium, old, unsure].
 
-It seems like you're trying out for a position at [Uptain](https://uptain.de) or you've found this and would like to apply.
-We're excited to see your creativity and skills in action — we 💚 those things at [Uptain](https://uptain.de)!
+For solving this problem, I have done a feature engineering step to extract some features of the data
+the extracted features are as follows:
+- **Year**: As a heuristic, I have assumed the number inside the email addresses, might indicate the year 
+  of creation. For this purpose I have first looked for 4-digit numbers like 19xx and 20xx, if it is not
+  found, I then looked for 2-digit numbers and converted them to 19xx or 20xx. If there is no number, this feature
+  would be None (0 in this case).
+- **Domain**: Domains can also be assumed as a feature, because some domain are old, some are newer
+  so they may containt valuable information. I have used a vectorizer to convert these domain to tokens.
 
-Your goal is to build an ML model that can detect the age of a person based on their email address. 
-Once you've completed the challenge, please create a Pull Request and we will get in touch. 🤙
+**Classifier**: The **Random Forest** is chosen for this task, because the nature of the dataset; to prevent
+overfitting, outlier handling and also because of its interpretability.
 
-Fork this repo and get started 🥷
+I didn't use any **Deep learning model** for solving this challenge, because we have limited amount of data.
+Also the features we have use are not complicated, so fine-tuning a pretrained model is also not a good choice.
 
-## Brief
+To train the model, I have labeled apart of the data  (600 samples), to have enough data for training the model.
+The I have used this model to label all the data. This is the evaluation of the trained model:
 
-This repository contains a file [emails.txt](./emails.txt), which has an unsorted list of emails. 
-Each email has a possible association with an age based on different attributes. 
-Your task is to find these attributes in the emails and build a model that can predict the age of a person based on their email address.
+              precision    recall  f1-score   support
 
-## Technology Selection
+       young       1.00      0.95      0.97        20
+      medium       0.96      1.00      0.98        24
+         old       1.00      1.00      1.00        19
+      unsure       1.00      1.00      1.00        57
 
-It is up to you to select your stack. Feel free to choose the one that enables you to complete the challenge.
-*   You can use any libraries, task runners, or frameworks you like; however, we expect the solution to be written in Python.
+    accuracy                          0.99       120
+    macro avg      0.99     0.99      0.99       120
+    weighted avg   0.99     0.99      0.99       120
 
-## Requirements
-
-*   The output of the model must produce a single JSON line like:
-    * ```{ "age": "{age_class}", "score": {score_value} }``` 
-
-    For example:
-    1.   ```{ "age": "young", "score": 1 }``` 
-    2.   ```{ "age": "medium", "score": 0.5 }``` 
-    3.   ```{ "age": "old", "score": 0.75 }``` 
-    4.   ```{ "age": "unsure", "score": 0 }``` 
-
-    Where `age` can be one of four options:
-
-    * young - a person is relatively young (18-30)
-    * medium - a person is middle-aged (30-50)
-    * old - a person is old (50+)
-    * unsure - the age can't be determined
-
-    The `score` should be a float value between `0` and `1`, where `1` is the most confident prediction 
-    and `0` is the least confident prediction. 
-
-*   Please provide a description of your solution and the decisions you made in the `README.md` file. 
-    * This must include the method of finding the attributes in the emails and the model training process you used to predict the age.
-    * And a guide of how to start the ML model from terminal, correctly provide input and receive an output.
-    * You can also include any additional information you think is relevant, possible the minimal RAM and CPU requirements, etc.
+Once you run the code, everything would be done from scratch, and it waits for you to insert 
+new email addresses.
 
 
+### How to run without Docker
+`pip3 install -r requirements.txt`
 
-# GitHub
-* [How to fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
-* [How to create a pull request from fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+`python3 main.py`
 
-# Disclaimer
+### How to run with Docker
+`docker build -t uptain .`
 
-This repository contains a list of generated test emails. Any real match with existing emails is purely coincidental and unintentional. All the emails here were generated for testing purposes only.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+`docker container run -it --name uptain uptain`
