@@ -1,5 +1,7 @@
 import re
+
 import numpy as np
+
 
 def softmax(scores, temperature=1.0):
     """Compute softmax values for each set of scores in x with temperature."""

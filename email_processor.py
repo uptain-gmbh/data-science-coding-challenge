@@ -1,12 +1,16 @@
-from tqdm import tqdm
 from sklearn.neighbors import KNeighborsClassifier
+from tqdm import tqdm
+
 from age_inference import (
     extract_username, extract_year_from_username,
     get_bert_embeddings, infer_age_from_knn,
     infer_age_from_year, infer_age_from_domain_type,
-    get_domain_age, load_whois_data, combine_ages
+    get_domain_age, load_whois_data, combine_ages,
+    infer_age_from_domain_age
+
 )
 from utils import clean_emails
+
 
 def process_emails(emails):
     original_emails, cleaned_emails = clean_emails(emails)

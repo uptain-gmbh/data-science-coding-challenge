@@ -1,5 +1,6 @@
 import json
 import os
+
 from email_processor import process_emails
 
 if __name__ == "__main__":

@@ -1,8 +1,12 @@
+import os
 import re
 from datetime import datetime
+
+import json
 import numpy as np
-from transformers import BertTokenizer, BertModel
 import whois
+from transformers import BertTokenizer, BertModel
+
 from utils import softmax
 
 # Initialize BERT tokenizer and model
