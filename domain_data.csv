@@ -1,0 +1,14 @@
+domain,launch_year,total_users_in_mil,young,medium,old,probable_cat_domain
+gmail.com,2004,1800,26.5,48,25.5,medium
+yahoo.com,1994,227,26.5,47.55,25.95,medium
+hotmail.com,1996,400,25.63,47.55,26.82,medium
+aol.com,1985,1.5,15,35,48,old
+icloud.com,2012,850,30,46,24,medium
+outlook.com,2012,400,30,46,24,medium
+mail.com,1995,,,,,unsure
+tutanota.com,2014,,,,,unsure
+protonmail.com,2014,50,30,46,24,medium
+organization.org,-,,,,,unsure
+sub.company.com,-,,,,,unsure
+company.co.uk,-,,,,,unsure
+sub.domain.com,-,,,,,unsure
