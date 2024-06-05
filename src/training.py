@@ -109,7 +109,7 @@ def main(emails_txt_file):
         start_memory = process.memory_info().rss / (1024 * 1024)  # in MB
 
         # Get CV results
-        get_cv_results(X_encoded, y, clf, num_classes, metadata_dir)
+        get_cv_results(X_encoded, y, clf, metadata_dir)
 
         # Measure the end time and memory after training
         end_time = time.time()

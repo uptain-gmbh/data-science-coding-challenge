@@ -36,6 +36,9 @@ def is_valid_email(email):
 
 
 def extract_info(x):
+    """
+    This function extract (username length, estimated age domain and age_range) from the email address
+    """
 
     # Initialize age
     age = 0
@@ -89,7 +92,7 @@ def extract_info(x):
                 age = today.year - int(birth_year)
 
         elif len(str(extracted_number)) == 1: # Assume young generation (random assignment)
-            return pd.Series([username_len, random.randint(18, 30), 'young'])#18-30'
+            return pd.Series([username_len, random.randint(18, 30), 'young']) #18-30'
         else:
             #  'young' assumption if no other rules apply
             return pd.Series([username_len, random.randint(18, 30), 'young'])
@@ -123,7 +126,11 @@ def domain_extraction(x):
 
 
 def extract_features4test(x):
-
+    """
+    This function finds estimated age for a given email address
+    :param x:
+    :return:
+    """
     username, domain = x.split('@')
     domain = domain.split('.')[0]
     today = date.today()
@@ -190,7 +197,11 @@ def extract_features4test(x):
 #                   Find best parameter
 ##################################################################
 
+
 def get_bestparam(train_index, X, y, classifier):
+    """
+    This finds best parameters of classifier using gridsearch
+    """
     X_train = X.loc[train_index]
     y_train = y[train_index]
 
@@ -257,7 +268,6 @@ def get_bestparam(train_index, X, y, classifier):
             'subsample': [0.5, 0.7, 1]
         }
 
-    #if classifier == 'random_forest' or classifier == 'decision_tree' or classifier == 'knn' or classifier == 'logistic_regression' or classifier == 'NuSVC' or classifier == 'lgbm_classifier' or classifier == 'xgboost_classifier':
     gs = GridSearchCV(
         estimator=estimator,
         param_grid=params,
@@ -303,8 +313,6 @@ def do_validation(train_index, test_index, X, y, classifier, bestparams, fold_nu
     le_classes = le.classes_
     if fold_number == 1 and classifier == 'random_forest':
         logging.info('le.classes_: {}'.format(le_classes))
-        #num_classes = len(le_classes)
-        #print('num_classes: {}'.format(num_classes))
 
     y_train = le.transform(y_train)
     y_test = le.transform(y_test)
@@ -347,7 +355,6 @@ def do_validation(train_index, test_index, X, y, classifier, bestparams, fold_nu
                 'feature_names': clf.feature_names_in_,
                 'class_categories': le_classes
             }
-        #print(paramaters)
         pickle.dump(paramaters, open(params_path, 'wb'))
 
         # Save standard scaler to a pickle file
@@ -391,7 +398,7 @@ def do_validation(train_index, test_index, X, y, classifier, bestparams, fold_nu
     return df
 
 
-def get_cv_results(X, y, classifier, num_classes, metadata_dir):
+def get_cv_results(X, y, classifier, metadata_dir):
     logging.info("Classifier : {}".format(classifier))
     bestparams = {}
     # Create StratifiedKFold object.
