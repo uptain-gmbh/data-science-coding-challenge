@@ -83,38 +83,17 @@ There are a total of 1073 emails in the text file provided.
 
 ## Results
 **10-Fold Cross Validation results**
-- **Random Forest**
-    - **Accuracy**: 0.90 &plusmn; 0.04
-    - **AUC**: 0.98 &plusmn; 0.01
-    - **Precision**: 0.93 &plusmn; 0.02
-    - **Recall**: 0.87 &plusmn; 0.07
 
-- **LGBM Classifier**
-    - **Accuracy**: 0.90 &plusmn; 0.03
-    - **AUC**: 0.98 &plusmn; 0.01
-    - **Precision**: 0.92 &plusmn; 0.05
-    - **Recall**: 0.91 &plusmn; 0.06
+| Model        | Accuracy     | AUC          | Precision    | Recall       |
+|--------------|--------------|--------------|--------------|--------------|
+| Random Forest | 0.90 &plusmn; 0.04 | 0.98 &plusmn; 0.01 | 0.93 &plusmn; 0.02 | 0.87 &plusmn; 0.07 |
+| LGBM Classifier| 0.90 &plusmn; 0.03 | 0.98 &plusmn; 0.01 | 0.92 &plusmn; 0.05 | 0.91 &plusmn; 0.06|
+| XGBoost Classifier | 0.91 &plusmn; 0.03 | 0.98 &plusmn; 0.01 | 0.94 &plusmn; 0.02| 0.94 &plusmn; 0.02 |
+| KNN | 0.89 &plusmn; 0.04 |  0.94 &plusmn; 0.03 | 0.92 &plusmn; 0.03 | 0.87  &plusmn; 0.08 |
+| Logistic Regression | 0.89 &plusmn; 0.03 | 0.96 &plusmn; 0.01 | 0.92 &plusmn; 0.02 | 0.91  &plusmn; 0.04 |
+| Support Vector Machine | 0.73 &plusmn; 0.06 | 0.87 &plusmn; 0.05 | 0.81 &plusmn; 0.05 | 0.77  &plusmn; 0.06 |
 
-- **XGBoost Classifier**
-    - **Accuracy**: 0.91 &plusmn; 0.03
-    - **AUC**: 0.98 &plusmn; 0.01
-    - **Precision**: 0.94 &plusmn; 0.02
-    - **Recall**: 0.94 &plusmn; 0.02
-- **KNN**
-    - **Accuracy**: 0.89 &plusmn; 0.04
-    - **AUC**: 0.94 &plusmn; 0.03
-    - **Precision**: 0.92 &plusmn; 0.03
-    - **Recall**: 0.87  &plusmn; 0.08
-- **Logistic Regression**
-    - **Accuracy**: 0.89 &plusmn; 0.03
-    - **AUC**: 0.96 &plusmn; 0.01
-    - **Precision**: 0.92 &plusmn; 0.02
-    - **Recall**: 0.91  &plusmn; 0.04
-- **Support Vector Machine**
-    - **Accuracy**: 0.73 &plusmn; 0.06
-    - **AUC**: 0.87 &plusmn; 0.05
-    - **Precision**: 0.81 &plusmn; 0.05
-    - **Recall**: 0.77  &plusmn; 0.06
+
 
 ## Computation time and Memory Usuage
 The total computation time and memory used for the hyper parameter tuning, training and 10-fold cross validation is as shown in the bellow table:
@@ -172,18 +151,24 @@ To get started with this project, follow these steps:
          ```sh
         python ./src/training.py -i data/emails.txt
          ```
-- **Run the trained models**
+- **Run the trained models on terminal**
    - It is possible to just run the ML models already dumped in pickle format from the terminal and to predict age. Results is saved as **output.json** in **output** directory. To load random forest model, run the following:
      ```sh
      python ./src/load_and_test_model.py -e sabi.manoj80@gmail.com -m models/random_forest_model.pkl -i saved_metadata/metadata.pkl -o saved_metadata/encoder.pkl -s saved_metadata/scaler.pkl
        ```
+     ```sh
      options to be provided to script:
-     -e 'email address that need be provided'
-     -m 'Trained ML model that was dumped during the training process'
-     -i 'Metadata information pickle file dumped during training - It contains information such as feature names and class categories'
-     -o 'One Hot Encodel pickle file dumped during training'
-     -s 'Standard scaler pickle file dumped during training'
      
+     -e 'email address that need be provided'
+     
+     -m 'Trained ML model that was dumped during the training process'
+     
+     -i 'Metadata information pickle file dumped during training - It contains information such as feature names and class categories'
+     
+     -o 'One Hot Encodel pickle file dumped during training'
+     
+     -s 'Standard scaler pickle file dumped during training'
+     ```
     
    - Similarly to run LGBM model:
      ```sh
@@ -198,6 +183,10 @@ To get started with this project, follow these steps:
   - To run Logistic regression model:
      ```sh
      python ./src/load_and_test_model.py -e sabi.manoj80@gmail.com -m models/logistic_regression_model.pkl -i saved_metadata/metadata.pkl -o saved_metadata/encoder.pkl -s saved_metadata/scaler.pkl
+
+## Note :
+Code developed and verified with **PyCharm2021.3.1** on **Windows11**
+
 ## Contact
 If you have any questions please feel free to reach out:
 
