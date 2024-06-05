@@ -1,60 +1,76 @@
-# Uptain Data Science Coding Challenge
-
-It seems like you're trying out for a position at [Uptain](https://uptain.de) or you've found this and would like to apply.
-We're excited to see your creativity and skills in action — we 💚 those things at [Uptain](https://uptain.de)!
-
-Your goal is to build an ML model that can detect the age of a person based on their email address. 
-Once you've completed the challenge, please create a Pull Request and we will get in touch. 🤙
-
-Fork this repo and get started 🥷
-
-## Brief
-
-This repository contains a file [emails.txt](./emails.txt), which has an unsorted list of emails. 
-Each email has a possible association with an age based on different attributes. 
-Your task is to find these attributes in the emails and build a model that can predict the age of a person based on their email address.
-
-## Technology Selection
-
-It is up to you to select your stack. Feel free to choose the one that enables you to complete the challenge.
-*   You can use any libraries, task runners, or frameworks you like; however, we expect the solution to be written in Python.
-
-## Requirements
-
-*   The output of the model must produce a single JSON line like:
-    * ```{ "age": "{age_class}", "score": {score_value} }``` 
-
-    For example:
-    1.   ```{ "age": "young", "score": 1 }``` 
-    2.   ```{ "age": "medium", "score": 0.5 }``` 
-    3.   ```{ "age": "old", "score": 0.75 }``` 
-    4.   ```{ "age": "unsure", "score": 0 }``` 
-
-    Where `age` can be one of four options:
-
-    * young - a person is relatively young (18-30)
-    * medium - a person is middle-aged (30-50)
-    * old - a person is old (50+)
-    * unsure - the age can't be determined
-
-    The `score` should be a float value between `0` and `1`, where `1` is the most confident prediction 
-    and `0` is the least confident prediction. 
-
-*   Please provide a description of your solution and the decisions you made in the `README.md` file. 
-    * This must include the method of finding the attributes in the emails and the model training process you used to predict the age.
-    * And a guide of how to start the ML model from terminal, correctly provide input and receive an output.
-    * You can also include any additional information you think is relevant, possible the minimal RAM and CPU requirements, etc.
+## Input validation
+The given email addresses are screened for valid email address format. Only those which are valid are considered for  further steps.
+Even when the input is entered by the user to test the model, the input is validated for the proper email address format.
 
 
+## Attribute selection
+Email addresses comprise of two main components: username and domain name.
+username was used to derive as much insight as possible regarding the age. 
 
-# GitHub
-* [How to fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
-* [How to create a pull request from fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+Using username, I have derived the following attributes: 
+    -- length of the username
+    -- digits
+    -- length of digits
+    -- year of birth 
+    -- probable age 
+    -- probable age group 
 
-# Disclaimer
+    Using the length of digits, the possible age of the email address user is predicted (year of birth, probable age, probable age category). 
+    (Only those cases with the length of digits 2 or 4 are considered to predict the year. This is due to the shortage of time and ease of coding for this project.)
+    For any derived year, it can mean the following:
+        -- year of creation of email ID
+        -- year of birth of the user
+        -- age of the user when email ID is created. (in case of 2 digits)
+    Hence, using the derived year, probability that the predicted age / age category is true is only 0.33 (assuming uniform distribution among the above three cases.)
+    ** Please note that an assumption is made that the users of the email ID are all above 18 years of age. Hence, people who are born in the last 18 years from now do not have an email address.
+    
 
-This repository contains a list of generated test emails. Any real match with existing emails is purely coincidental and unintentional. All the emails here were generated for testing purposes only.
 
-## License
+domain name was used to derive the age distribution of the users with the email ID linked to the given domain.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Some of the sources used to gain the statistics of the users in each of the category are listed below: 
+https://www.demandsage.com/gmail-statistics/
+https://www.similarweb.com/website/hotmail.com/#demographics
+https://wifitalents.com/statistic/apple-icloud/#:~:text=%22Over%2070%25%20of%20iCloud%27s%20user,group%20of%2018%2D49.%22
+https://www.sellcell.com/blog/most-popular-email-provider-by-number-of-users/
+https://market.us/statistics/internet/email-users/
+
+In the above sources, the distribution of age is made into 5 categories. An assumption is made that in each of these categories, the number of users are same for every age. Based on this assumption, the age distribution for the required 3 categories in this problem is derived. 
+Some of the above sources also provide country-specific data. This data is assumed to be true for all the countries and reflects the world-wide distribution of the users.
+Using the above sources, information was derived for only few domains. For other domains, the data was extrapolated based on the year of foundation.
+
+Using the domain name, following attributes were derived:
+    -- top domain
+    -- year of foundation of domain
+    -- percentage of users in age group young
+    -- percentage of users in age group medium
+    -- percentage of users in age group old
+    -- maximum probable age category
+
+
+## Machine learning model
+The given data is labeled and converted to a supervised learning problem.
+To label the data, few key attributes are used.
+    -- probable age category (derived from user name) (first attribute)
+    -- maximum probable age category (derived from domain name) (second attribute)
+
+The probability of the first attribute to be true is 0.33. 
+The probability of the second attribute to be true is (percentage of maximum probable age category) / 100.
+If the first attribute is present, and if the first and the second attributes differ, the label assigned is the same as that of the first attribute with the label_score = 0.33
+Otherwise, the label assigned is the that of the second attribute with the label_score = (probability of the second category in the domain)
+This also helped derive another attribute: label_score.
+Using the above attributes, RandomForestClassifier is used to classify the instances. 
+
+
+## Input of the model
+The model takes in the number(integer) of email ids (n) the tester/user of the solution wants to predict.
+Followed by this, the model requests "n" email IDs (string) to be entered and classifies each of these email ID to the predefined age categories.
+
+
+## How to run the model
+Run the solution.py file
+`python3 solution.py`
+
+
+## Libraries used
+Pandas, Numpy, scikit-learn, json and email_validator
