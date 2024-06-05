@@ -1,60 +1,31 @@
 # Uptain Data Science Coding Challenge
 
-It seems like you're trying out for a position at [Uptain](https://uptain.de) or you've found this and would like to apply.
-We're excited to see your creativity and skills in action — we 💚 those things at [Uptain](https://uptain.de)!
 
-Your goal is to build an ML model that can detect the age of a person based on their email address. 
-Once you've completed the challenge, please create a Pull Request and we will get in touch. 🤙
+# Description of solution
 
-Fork this repo and get started 🥷
+My first step was to load the data to understand its structure. Upon seeing that it consisted of typical email addresses, I contemplated the potential features to use for predicting age. To explore this, I consulted ChatGPT for suggestions on features that could help determine a person's age from their email address. ChatGPT suggested several features, such as the length of the username, the presence of special characters (underscores or dots), the inclusion of numbers, and the email domain/provider.
 
-## Brief
+These suggestions were intriguing, particularly in terms of understanding what insights into age these attributes could provide. However, I had reservations about some assumptions made by ChatGPT. For instance, it assumed that the presence of numbers in the username likely indicated a birth year. It also suggested that older email domains might correspond to older users. While I partially agreed with this, I noted that younger users might also use older domains, which could introduce bias if these assumptions were overly relied upon. Additionally, ChatGPT's suggestion to use these features in a supervised ML model seemed redundant; if the features alone could determine age, a simple rule-based system might suffice.
 
-This repository contains a file [emails.txt](./emails.txt), which has an unsorted list of emails. 
-Each email has a possible association with an age based on different attributes. 
-Your task is to find these attributes in the emails and build a model that can predict the age of a person based on their email address.
+Through further online research, I found that the structure of email addresses has evolved over the years. Early email addresses tended to be short, often comprising just a first name and a number, whereas more recent ones typically have a more professional look and are longer. While this observation was considered, it was not used in the initial model training but was kept in mind for later analysis.
 
-## Technology Selection
+Next, I examined the data more closely and performed data cleaning since many emails were improperly formatted. Notably, the dataset contained only 1073 email addresses, which posed a challenge for building a robust ML model given the limited features. With cleaned data, I observed that approximately 45% of the emails were from Gmail domains, potentially biasing the model. Given that this was an unsupervised learning problem without labeled data, I opted for a KMeans model to classify the emails into four age groups. To handle feature importance, I used IsolationForest.
 
-It is up to you to select your stack. Feel free to choose the one that enables you to complete the challenge.
-*   You can use any libraries, task runners, or frameworks you like; however, we expect the solution to be written in Python.
+A challenge arose with the high importance assigned to domains, affecting the results. To address this, I had to tune the weights so that all features were considered with relative importance. The final features selected were: username length, and boolean indicators for the presence of dots, underscores, numbers, and the email domain. This resulted in five features.
 
-## Requirements
+To prepare the data for the model, I normalized the username length using MinMaxScaler and one-hot-encoded the categorical domain features, resulting in 18 features for the model. I created four clusters corresponding to the four age categories and examined how the model grouped the email addresses. To mitigate the bias from the overrepresented Gmail domain, I adjusted the weights accordingly.
 
-*   The output of the model must produce a single JSON line like:
-    * ```{ "age": "{age_class}", "score": {score_value} }``` 
+Analyzing the clusters created by the model revealed trends in email address patterns over time, matching the previous internet research. Shorter addresses were common in the 90s and early 2000s, often using domains like AOL, Hotmail, and Yahoo. More recent trends include longer addresses with underscores and the use of dots between first and last names, along with domains like iCloud, ProtonMail, and Tutanota. The 'unsure' cluster consisted of emails that combined various features, making them harder to classify into a specific group. With this in mind, the names for each cluster are determined, making this the first and only assumption used for the model.
 
-    For example:
-    1.   ```{ "age": "young", "score": 1 }``` 
-    2.   ```{ "age": "medium", "score": 0.5 }``` 
-    3.   ```{ "age": "old", "score": 0.75 }``` 
-    4.   ```{ "age": "unsure", "score": 0 }``` 
-
-    Where `age` can be one of four options:
-
-    * young - a person is relatively young (18-30)
-    * medium - a person is middle-aged (30-50)
-    * old - a person is old (50+)
-    * unsure - the age can't be determined
-
-    The `score` should be a float value between `0` and `1`, where `1` is the most confident prediction 
-    and `0` is the least confident prediction. 
-
-*   Please provide a description of your solution and the decisions you made in the `README.md` file. 
-    * This must include the method of finding the attributes in the emails and the model training process you used to predict the age.
-    * And a guide of how to start the ML model from terminal, correctly provide input and receive an output.
-    * You can also include any additional information you think is relevant, possible the minimal RAM and CPU requirements, etc.
+Finally, I tested a few personal email addresses from friends and family, obtaining some correct predictions, but there were inaccuracies. I believe additional features could improve the model’s accuracy. Firstly, having more data would enhance learning and better classify the 'unsure' cases. Additionally, incorporating a web scraping algorithm to find users' social media profiles, such as Facebook, could provide more direct age information from their bio. However, this raises ethical concerns, so it was not implemented in this project but could potentially improve the prediction score.
 
 
+# Guide to start model
 
-# GitHub
-* [How to fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
-* [How to create a pull request from fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
-
-# Disclaimer
-
-This repository contains a list of generated test emails. Any real match with existing emails is purely coincidental and unintentional. All the emails here were generated for testing purposes only.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- open a terminal window
+- pip3 install -r requirements.txt
+- python3 main.py
+(You will be asked to write an email address)
+- write email address and press enter
+- results are presented
+- write 'exit' to quit program
