@@ -1,3 +1,6 @@
+##################################################
+# Load and test the model
+#################################################
 import pickle
 import pandas as pd
 import logging
@@ -30,7 +33,7 @@ def main(email, model_path, params_file_path, scaler_path, one_hot_encoder_path)
         # Extract domain
         domain = email_ser.apply(domain_extraction)
         test_data = {
-            'domain' : [domain[0]]
+            'domain': [domain[0]]
         }
         test_df = pd.DataFrame(test_data)
         encoder = pickle.load(open(one_hot_encoder_path,'rb'))
@@ -96,7 +99,7 @@ if __name__ == '__main__':
     from datetime import datetime
     now = datetime.now()
     date_time = now.strftime("%m%d%Y_%H%M%S")
-    filename='log_files/load_and_test_model' + date_time + '.log'
+    filename= 'log_files/load_and_test_model' + date_time + '.log'
 
     logging.basicConfig(filename=filename, level=logging.WARN, filemode='w', format='%(message)s')
     logging.getLogger().addHandler(logging.StreamHandler())
