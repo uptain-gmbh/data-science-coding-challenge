@@ -58,3 +58,52 @@ This repository contains a list of generated test emails. Any real match with ex
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+---
+---
+
+# Solution
+**TODO**
+
+## Requirements
+This solution is pretty lightweight and does not require specific CPU or RAM constraint.
+
+## Installation
+First navigate to the solution folder.
+``` 
+: cd solution 
+```
+Then make an virtual environment.
+``` 
+: python -m venv .venv 
+```
+Depending on the OS, switch to the environment. Here is for Windows:
+```
+: .venv\Scripts\activate
+``` 
+Install requirements
+```
+(.venv): pip install -r requirements.txt
+```
+
+## Inference
+The main entry point for inference is `main.py`. The module requires one of two argumants: `--file` or `--email`. The file format must be a text file just like what was intially provided.
+```
+-f FILE, --file FILE  Path to a text file with emails.
+-e EMAIL, --email EMAIL Email address for inference. i.e. 'john.smith@example.com'
+```
+### Example for an email
+```
+(.venv): python main.py -e john.smith@example.com
+{'email': 'john.smith@example.com', 'age': 'unsure', 'score': 0.68}
+```
+
+### Example for a text file
+We can use the provided `emails.txt` file located in root directory of this repository. Since we are in `solution` directory, we must supply the file as follow:
+```
+(.venv): python main.py -f ../emails.txt 
+Started prediction ...
+Prediction done.
+```
+Depending on your hardware, the inferance may take betwee 1 to 3 minutes. After completion you can check `result.json` file.
