@@ -101,7 +101,7 @@ def main(emails_txt_file):
     save_boxplot_path = save_dir + '/' + 'boxplot.png'
     plt.title('Box Plot')
     plt.savefig(save_boxplot_path)
-
+    '''
     # Bivariate analysis
     plt.figure(figsize=(8, 8))
     plt.xticks(fontsize=6)
@@ -110,7 +110,7 @@ def main(emails_txt_file):
     save_stripplot_path = save_dir + '/' + 'stripplot.png'
     plt.title('Strip plot between domain and estimated_age')
     plt.savefig(save_stripplot_path)
-
+    '''
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
