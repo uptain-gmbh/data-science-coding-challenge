@@ -1,0 +1,10 @@
+pandas==2.2.1
+matplotlib==3.8.4
+numpy==1.24.3
+xgboost==2.0.3
+scikit-learn==1.4.2
+lightgbm==4.3.0
+seaborn==0.12.2
+joblib==1.4.0
+psutil==5.9.8
+memory_profiler==0.58.0

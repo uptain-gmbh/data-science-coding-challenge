@@ -1,0 +1,126 @@
+There are 1073 emails in data/emails.txt
+Number of duplicated emails: 83 
+Number of emails after removing duplicates: 990 
+There are 69 invalid emails
+Number of emails after removing invalid emails: 921 
+
+
+Classifier : random_forest
+Best parameters from Gridsearch
+{'criterion': 'entropy', 'max_depth': 8}
+le.classes_: ['medium' 'minor' 'old' 'young']
+-----------------------------------------------------
+    10 Fold Cross Validation Results                 
+-----------------------------------------------------
+Accuracy mean  : 0.9 
+Accuracy Std   : 0.04 
+AUC mean       : 0.98 
+AUC Std        : 0.01 
+Precision mean : 0.93 
+Precision Std  : 0.02 
+Recall mean    : 0.87 
+Recall Std     : 0.07 
+10 Fold Cross validation time and Memory usuage are as follows:
+time: 8.13 seconds.
+Memory usage: 2.05 MB
+-----------------------------------------------------
+
+
+Classifier : lgbm_classifier
+Best parameters from Gridsearch
+{'learning_rate': 0.05, 'n_estimators': 150, 'num_leaves': 5}
+-----------------------------------------------------
+    10 Fold Cross Validation Results                 
+-----------------------------------------------------
+Accuracy mean  : 0.9 
+Accuracy Std   : 0.03 
+AUC mean       : 0.98 
+AUC Std        : 0.01 
+Precision mean : 0.92 
+Precision Std  : 0.05 
+Recall mean    : 0.91 
+Recall Std     : 0.06 
+10 Fold Cross validation time and Memory usuage are as follows:
+time: 34.06 seconds.
+Memory usage: 1.35 MB
+-----------------------------------------------------
+
+
+Classifier : xgboost_classifier
+Best parameters from Gridsearch
+{'learning_rate': 0.001, 'max_depth': 5, 'subsample': 1}
+-----------------------------------------------------
+    10 Fold Cross Validation Results                 
+-----------------------------------------------------
+Accuracy mean  : 0.91 
+Accuracy Std   : 0.03 
+AUC mean       : 0.98 
+AUC Std        : 0.01 
+Precision mean : 0.94 
+Precision Std  : 0.02 
+Recall mean    : 0.94 
+Recall Std     : 0.02 
+10 Fold Cross validation time and Memory usuage are as follows:
+time: 8.79 seconds.
+Memory usage: 11.60 MB
+-----------------------------------------------------
+
+
+Classifier : knn
+Best parameters from Gridsearch
+{'n_neighbors': 3, 'weights': 'distance'}
+-----------------------------------------------------
+    10 Fold Cross Validation Results                 
+-----------------------------------------------------
+Accuracy mean  : 0.89 
+Accuracy Std   : 0.04 
+AUC mean       : 0.94 
+AUC Std        : 0.03 
+Precision mean : 0.92 
+Precision Std  : 0.03 
+Recall mean    : 0.87 
+Recall Std     : 0.08 
+10 Fold Cross validation time and Memory usuage are as follows:
+time: 0.63 seconds.
+Memory usage: 0.79 MB
+-----------------------------------------------------
+
+
+Classifier : logistic_regression
+Best parameters from Gridsearch
+{'C': 1000.0}
+-----------------------------------------------------
+    10 Fold Cross Validation Results                 
+-----------------------------------------------------
+Accuracy mean  : 0.89 
+Accuracy Std   : 0.03 
+AUC mean       : 0.96 
+AUC Std        : 0.01 
+Precision mean : 0.92 
+Precision Std  : 0.02 
+Recall mean    : 0.91 
+Recall Std     : 0.04 
+10 Fold Cross validation time and Memory usuage are as follows:
+time: 21.74 seconds.
+Memory usage: 0.17 MB
+-----------------------------------------------------
+
+
+Classifier : NuSVC
+Best parameters from Gridsearch
+{'nu': 0.1}
+-----------------------------------------------------
+    10 Fold Cross Validation Results                 
+-----------------------------------------------------
+Accuracy mean  : 0.73 
+Accuracy Std   : 0.06 
+AUC mean       : 0.87 
+AUC Std        : 0.05 
+Precision mean : 0.81 
+Precision Std  : 0.05 
+Recall mean    : 0.77 
+Recall Std     : 0.06 
+10 Fold Cross validation time and Memory usuage are as follows:
+time: 2.05 seconds.
+Memory usage: 0.70 MB
+-----------------------------------------------------
