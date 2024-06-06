@@ -1,60 +1,20 @@
-# Uptain Data Science Coding Challenge
+# Email Data Processor and Classifier
 
-It seems like you're trying out for a position at [Uptain](https://uptain.de) or you've found this and would like to apply.
-We're excited to see your creativity and skills in action — we 💚 those things at [Uptain](https://uptain.de)!
+This repository features a Python script designed to predict the age of a person based on their email address. The script processes a file named `emails.txt`, which contains an unsorted list of email addresses. Each email has potential attributes that can be linked to the user's age. The script extracts these attributes and uses them to build a model that predicts the age class based on the email address.
 
-Your goal is to build an ML model that can detect the age of a person based on their email address. 
-Once you've completed the challenge, please create a Pull Request and we will get in touch. 🤙
+## Features
 
-Fork this repo and get started 🥷
+- **Data Extraction and Processing**: Parses emails from a file and organizes extracted details into a structured DataFrame, saved to a CSV for further use.
+- **Model Training**: Trains and serializes several machine learning models to classify data into predefined age classes.
+- **Model Testing**: Allows testing trained models with sample email inputs for practical validation of the classifier's effectiveness.
+- **Alternative Non-ML Approach**: Includes methods to handle and evaluate email data without using machine learning, focusing on basic data handling and processing techniques.
 
-## Brief
+## How to Run
 
-This repository contains a file [emails.txt](./emails.txt), which has an unsorted list of emails. 
-Each email has a possible association with an age based on different attributes. 
-Your task is to find these attributes in the emails and build a model that can predict the age of a person based on their email address.
+1. Please ensure `requirements.txt` is run to install all necessary packages.
+2. Modify the sample email ID in the `test_email_with_model` function to test different email IDs.
+3. Execute the script to process the data, train the models, and test the outputs.
 
-## Technology Selection
-
-It is up to you to select your stack. Feel free to choose the one that enables you to complete the challenge.
-*   You can use any libraries, task runners, or frameworks you like; however, we expect the solution to be written in Python.
-
-## Requirements
-
-*   The output of the model must produce a single JSON line like:
-    * ```{ "age": "{age_class}", "score": {score_value} }``` 
-
-    For example:
-    1.   ```{ "age": "young", "score": 1 }``` 
-    2.   ```{ "age": "medium", "score": 0.5 }``` 
-    3.   ```{ "age": "old", "score": 0.75 }``` 
-    4.   ```{ "age": "unsure", "score": 0 }``` 
-
-    Where `age` can be one of four options:
-
-    * young - a person is relatively young (18-30)
-    * medium - a person is middle-aged (30-50)
-    * old - a person is old (50+)
-    * unsure - the age can't be determined
-
-    The `score` should be a float value between `0` and `1`, where `1` is the most confident prediction 
-    and `0` is the least confident prediction. 
-
-*   Please provide a description of your solution and the decisions you made in the `README.md` file. 
-    * This must include the method of finding the attributes in the emails and the model training process you used to predict the age.
-    * And a guide of how to start the ML model from terminal, correctly provide input and receive an output.
-    * You can also include any additional information you think is relevant, possible the minimal RAM and CPU requirements, etc.
+This solution offers both a machine learning approach and a simpler alternative that does not rely on ML techniques, providing flexibility depending on the user's needs or computational resources.
 
 
-
-# GitHub
-* [How to fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
-* [How to create a pull request from fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
-
-# Disclaimer
-
-This repository contains a list of generated test emails. Any real match with existing emails is purely coincidental and unintentional. All the emails here were generated for testing purposes only.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
