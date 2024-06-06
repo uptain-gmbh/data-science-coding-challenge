@@ -64,7 +64,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 # Solution
-**TODO**
+I like to emphasize that this is not a supervised learning problem. Altough some emails have birth year wihtin them that can easily be extracted as label, we do not have labels for all the emails. It is a grave mistake to train a model with those labels (This leads to **overfitting** and **data leakage**) and use this model for the rest of the emails or real world scenarios.
+
+For a comprehensive explanation of the methodology and implementation details, please refer to the notebook named "solution" in the "solution" directory.
 
 ## Requirements
 This solution is pretty lightweight and does not require specific CPU or RAM constraint.
@@ -106,4 +108,4 @@ We can use the provided `emails.txt` file located in root directory of this repo
 Started prediction ...
 Prediction done.
 ```
-Depending on your hardware, the inferance may take betwee 1 to 3 minutes. After completion you can check `result.json` file.
+Depending on your hardware, the inferance may take between 1 to 3 minutes. After completion you can check `result.json` file.
