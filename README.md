@@ -47,10 +47,15 @@ It is up to you to select your stack. Feel free to choose the one that enables y
 ## Solution: KNN improve labeling + LightGBM +Optuna
 ### Data cleaning
    * Duplicate Removal: Duplicates are identified and removed to ensure each data entry is unique and valuable.
+     83 duplicated emails that need to be deleted.
    * Typo Fixing: Instead of dropping entries with typos, they are corrected to preserve every piece of data, acknowledging that each data point is valuable.
+     * Missing dot or duplicate dot before "com"
+     * "," instead of "."
+     * Missing "com"
 ### Initial Labeling
    * Use heuristic rules to label a portion of the data based on the extracted birth years from the usernames.
-   * This initial labeling step provides a small amount of labeled data.
+   * This initial labeling step provides a small amount of labeled data, the "unsure" labels could be further labeling with the help of the initial labeling.
+     
      ![image](https://github.com/boyuwangpsu/data-science-coding-challenge/assets/49320567/4aca3b1b-eae6-421f-a1af-ffab6cb596e5)
 ### Exploratory Data Analysis (EDA)
    * Perform EDA to validate and refine the initial labels. This helps in understanding the data distribution and identifying potential issues.
