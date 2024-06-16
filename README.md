@@ -1,5 +1,3 @@
-# Uptain Data Science Coding Challenge
-
 # Email Age Classifier
 
 Python script processes a list of email addresses to extract, classify, and predict the age of a person based on email content. It features a comprehensive approach for data transformation, utilizing both machine learning models and an alternative mathematical approach for data processing.
