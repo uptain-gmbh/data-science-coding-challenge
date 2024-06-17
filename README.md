@@ -1,55 +1,21 @@
-# Uptain Data Science Coding Challenge
+# Email Age Classifier
 
-It seems like you're trying out for a position at [Uptain](https://uptain.de) or you've found this and would like to apply.
-We're excited to see your creativity and skills in action — we 💚 those things at [Uptain](https://uptain.de)!
+Python script processes a list of email addresses to extract, classify, and predict the age of a person based on email content. It features a comprehensive approach for data transformation, utilizing both machine learning models and an alternative mathematical approach for data processing.
 
-Your goal is to build an ML model that can detect the age of a person based on their email address. 
-Once you've completed the challenge, please create a Pull Request and we will get in touch. 🤙
+Three machine learning models are utilized for age prediction:
+- *Logistic Regression*
+- *Random Forest Classifier*
+- *Decision Tree Classifier*
 
-Fork this repo and get started 🥷
+These models are trained using the processed data, which is split into training and testing sets. After training, each model is saved to a file using `pickle`, making them reusable without the need for retraining.
 
-## Brief
+## Alternative Data Processing Method
+While working on the data processing, an alternative method using a mathematical equation was conceptualized and implemented in the `test_email_with_confidence` function. This method is intended to provide a quick assessment of the data’s completeness and the confidence level of the outputs based on the available email attributes.
 
-This repository contains a file [emails.txt](./emails.txt), which has an unsorted list of emails. 
-Each email has a possible association with an age based on different attributes. 
-Your task is to find these attributes in the emails and build a model that can predict the age of a person based on their email address.
-
-## Technology Selection
-
-It is up to you to select your stack. Feel free to choose the one that enables you to complete the challenge.
-*   You can use any libraries, task runners, or frameworks you like; however, we expect the solution to be written in Python.
-
-## Requirements
-
-*   The output of the model must produce a single JSON line like:
-    * ```{ "age": "{age_class}", "score": {score_value} }``` 
-
-    For example:
-    1.   ```{ "age": "young", "score": 1 }``` 
-    2.   ```{ "age": "medium", "score": 0.5 }``` 
-    3.   ```{ "age": "old", "score": 0.75 }``` 
-    4.   ```{ "age": "unsure", "score": 0 }``` 
-
-    Where `age` can be one of four options:
-
-    * young - a person is relatively young (18-30)
-    * medium - a person is middle-aged (30-50)
-    * old - a person is old (50+)
-    * unsure - the age can't be determined
-
-    The `score` should be a float value between `0` and `1`, where `1` is the most confident prediction 
-    and `0` is the least confident prediction. 
-
-*   Please provide a description of your solution and the decisions you made in the `README.md` file. 
-    * This must include the method of finding the attributes in the emails and the model training process you used to predict the age.
-    * And a guide of how to start the ML model from terminal, correctly provide input and receive an output.
-    * You can also include any additional information you think is relevant, possible the minimal RAM and CPU requirements, etc.
-
-
-
-# GitHub
-* [How to fork a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
-* [How to create a pull request from fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)
+## Testing the Models
+- **test_email_with_model Function**: This function allows for testing the pre-trained models with any given email to predict the age class, providing output along with a confidence score.
+  ```python
+  test_email_with_model('your_email@example.com', 'model_filename.pkl')
 
 # Disclaimer
 
